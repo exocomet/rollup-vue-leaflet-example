@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>rollup-vue-leaflet-example</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/vue2-leaflet@2.4.2/dist/vue2-leaflet.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="controls">
+            <div>
+                <button @click="deleteMarkers">Delete Markers</button>
+            </div>
+            <div>
+                <button @click="addRandomMarkers">Add Random Markers</button>
+                <input v-model="numRandomMarkers">
+            </div>
+        </div>
+        <div id="map">
+            <l-map :zoom="zoom" :center="center" @click="onMapClick">
+                <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+                <l-marker
+                    v-for="(marker, index) in markers"
+                    :key="marker.id"
+                    :visible="marker.visible"
+                    :draggable="marker.draggable"
+                    :lat-lng="marker.position"
+                    @click="onMarkerClick(index)"
+                />
+            </l-map>
+        </div>
+    </div>
+    <script src="bundle.js"></script>
+</body>
+</html>
