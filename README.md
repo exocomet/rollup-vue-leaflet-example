@@ -115,15 +115,22 @@ Run rollup within the root directory of the project to create a bundle:
 
 ### Git
 
-According to our project structure the `.gitignore` file should contain the
-following:
+According to our project structure the `.gitignore` file could look like this:
 
     dist/
     build/
     node_modules/
     package-lock.json
 
-Then run `git init` and prepare to push to your remote repo.
+Then run `git init` and prepare to push to your remote repo. For example you could
+create a bare remote repo on github.com, and set it as remote origin for your local
+clone.
+
+    git remote add origin https://github.com/username/reponame.git
+
+Finally pull the origin master to your local clone
+
+    git pull --allow-unrelated-histories origin master
 
 ### Build
 
